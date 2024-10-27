@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fithub_subscription_subscription_manager,fithub_subscription_subscription_manager,model_fithub_subscription,group_fithub_subscription_manager,1,1,1,1

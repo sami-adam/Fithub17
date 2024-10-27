@@ -1,0 +1,11 @@
+<odoo>
+  <record id="action_fithub_subscription" model="ir.actions.act_window">
+    <field name="name">Subscription</field>
+    <field name="res_model">fithub.subscription</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_fithub" name="FitHub" sequence="10" web_icon="fithub_subscription,static/description/icon.png"/>
+  <menuitem id="menu_fithub_requests" name="Requests" parent="menu_fithub"/>
+  <menuitem id="menu_fithub_subscription" name="Subscriptions" parent="menu_fithub_requests" action="action_fithub_subscription"/>
+</odoo>

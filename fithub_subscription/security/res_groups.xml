@@ -1,0 +1,11 @@
+<odoo>
+    <record id="fithub_group_category" model="ir.module.category">
+        <field name="name">FitHub</field>
+        <field name="description">FitHub module category</field>
+    </record>
+
+    <record id="group_fithub_subscription_manager" model="res.groups">
+        <field name="name">Subscription Manager</field>
+        <field name="category_id" ref="fithub_group_category"/>
+    </record>
+</odoo>
