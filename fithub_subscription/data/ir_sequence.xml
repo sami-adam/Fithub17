@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_fithub_subscription" model="ir.sequence">
+        <field name="name">FitHub Subscription Sequence</field>
+        <field name="code">fithub.subscription</field>
+        <field name="prefix">SUB/%(year)s/</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

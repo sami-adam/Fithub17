@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="menu_fithub" name="FitHub" sequence="10" web_icon="fithub_subscription,static/description/icon.png"/>
+    <menuitem id="menu_fithub_requests" name="Requests" parent="menu_fithub"/>
+    <menuitem id="menu_fithub_configurations" name="Configuration" parent="menu_fithub"/>
+</odoo>

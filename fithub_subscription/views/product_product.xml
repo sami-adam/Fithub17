@@ -1,0 +1,22 @@
+<odoo>
+    <record id="action_subscription_type" model="ir.actions.act_window">
+        <field name="name">Subscription Types</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_is_subscription_type': True}</field>
+        <field name="domain">[('is_subscription_type', '=', True)]</field>
+    </record>
+
+    <menuitem id="menu_subscription_type" name="Subscription Types" action="action_subscription_type" parent="menu_fithub_configurations"/>
+
+    <!-- Product Category -->
+    <record id="action_subscription_category" model="ir.actions.act_window">
+        <field name="name">Subscription Categories</field>
+        <field name="res_model">product.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_is_subscription_category': True}</field>
+        <field name="domain">[('is_subscription_category', '=', True)]</field>
+    </record>
+
+    <menuitem id="menu_subscription_category" name="Subscription Categories" action="action_subscription_category" parent="menu_fithub_configurations"/>
+</odoo>

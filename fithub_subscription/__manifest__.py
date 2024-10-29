@@ -13,7 +13,11 @@
     'data': [
         'security/res_groups.xml',
         'security/ir.model.access.csv',
-        'views/fithub_subscription.xml',
+        'data/ir_sequence.xml',
+        'views/menus.xml',
+        'views/account_move.xml',
+        'views/res_partner.xml',
+        'views/product_product.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
