@@ -1,5 +1,22 @@
 <odoo>
 
+  <record id="view_subscription_tree" model="ir.ui.view">
+    <field name="name">Subscription Tree</field>
+    <field name="model">account.move</field>
+    <field name="priority" eval="999"/>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="partner_id"/>
+        <field name="invoice_date"/>
+        <field name="subscription_end_date"/>
+        <field name="amount_untaxed_signed" string="Untaxed Amount"/>
+        <field name="subscription_types"/>
+        <field name="amount_total_signed"/>
+        <field name="state"/>
+      </tree>
+    </field>
+  </record>
   <record id="view_subscription_form" model="ir.ui.view">
     <field name="name">Subscription Form</field>
     <field name="model">account.move</field>
@@ -126,7 +143,7 @@
             <group id="header_left_group">
               <label for="partner_id" string="Member" style="font-weight:bold;" invisible="move_type not in ('out_invoice', 'out_refund', 'out_receipt')"/>
               <div class="o_col" invisible="move_type not in ('out_invoice', 'out_refund', 'out_receipt', 'in_invoice', 'in_refund', 'in_receipt')">
-                <field name="partner_id" widget="res_partner_many2one" nolabel="1" context="{'res_partner_search_mode': (context.get('default_move_type', 'entry') in ('out_invoice', 'out_refund', 'out_receipt') and 'customer') or (context.get('default_move_type', 'entry') in ('in_invoice', 'in_refund', 'in_receipt') and 'supplier') or False,'show_address': 1, 'default_is_company': True, 'show_vat': True}" domain="[('company_id', 'in', (False, company_id)),('is_member','=',True)]" options="{&quot;no_quick_create&quot;: True}" invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')" readonly="state != 'draft'"/>
+                <field name="partner_id" widget="res_partner_many2one" required="1" nolabel="1" context="{'res_partner_search_mode': (context.get('default_move_type', 'entry') in ('out_invoice', 'out_refund', 'out_receipt') and 'customer') or (context.get('default_move_type', 'entry') in ('in_invoice', 'in_refund', 'in_receipt') and 'supplier') or False,'show_address': 1, 'default_is_company': True, 'show_vat': True}" domain="[('company_id', 'in', (False, company_id)),('is_member','=',True)]" options="{&quot;no_quick_create&quot;: True}" invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')" readonly="state != 'draft'"/>
                 <button name="action_update_fpos_values" type="object" string="Update Taxes and Accounts" help="Recompute all taxes and accounts based on this fiscal position" class="btn-link mb-1 px-0" icon="fa-refresh" confirm="This will update all taxes and accounts based on the currently selected fiscal position." invisible="not show_update_fpos or state in ['cancel', 'posted']"/>
               </div>
 
@@ -135,7 +152,7 @@
             <group id="header_right_group">
               <!-- Invoice date (only invoices / receipts) -->
               <label for="invoice_date" string="Subscription Start" style="font-weight:bold;" invisible="move_type not in ('out_invoice', 'out_refund', 'out_receipt')"/>
-              <field name="invoice_date" nolabel="1" options="{'warn_future': true}" invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')" readonly="state != 'draft'"/>
+              <field name="invoice_date" required="1" nolabel="1" options="{'warn_future': true}" invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')" readonly="state != 'draft'"/>
               <field name="payment_reference" invisible="1" readonly="inalterable_hash != False"/>
               <field name="partner_bank_id" context="{'default_partner_id': bank_partner_id, 'display_account_trust': True}" domain="[('partner_id', '=', bank_partner_id)]" invisible="move_type not in ('in_invoice', 'in_refund', 'in_receipt')" readonly="state != 'draft'"/>
               <field name="currency_id" readonly="state != 'draft'" groups="!account.group_account_readonly,base.group_multi_currency" options="{'no_create': True}"/>
@@ -297,7 +314,7 @@
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="view_ids" eval="[(5, 0, 0),
-      (0, 0, {'view_mode': 'tree'}),
+      (0, 0, {'view_mode': 'tree', 'view_id': ref('view_subscription_tree')}),
       (0, 0, {'view_mode': 'form', 'view_id': ref('view_subscription_form')})]"/>
     <field name="context">{'default_move_type': 'out_invoice', 'default_is_subscription': True}</field>
     <field name="domain">[('is_subscription','=',True)]</field>
